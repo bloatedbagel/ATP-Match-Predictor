@@ -12,13 +12,13 @@ KEEP_COLS = [
 ]
 
 #Finds data for a certain year
-def find_season(year):
+def find_season(year: int):
   resp = requests.get(DATA_BASE_URL.format(year=year), timeout=30)
   resp.raise_for_status()
   return pd.read_csv(io.StringIO(resp.text))
 
 #Finds all matches from start year to end year
-def find_matches(start_year: int, end_year: int, verbose: bool):
+def find_matches(start_year: int, end_year: int, verbose: bool = False):
   frames = []
   tot_matches = 0
   for year in range(start_year, end_year + 1):
